@@ -1,3 +1,31 @@
-<p>
-  login-form works!
-</p>
+<div class="row">
+
+  <div class="col-md-6 login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+      <br>
+        <span class="ui-float-label">
+          <input type="email" size="30" pInputText formControlName="email" id="email" autocomplete="off" >
+          <label for="float-input">Email</label>
+      </span>
+        <!-- <input type="text" class="form-control" formControlName="email" id="email" autocomplete="off"> -->
+        <div class="error" *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched">Username is required</div>
+      </div>
+      <div class="form-group">
+          <br>
+          <span class="ui-float-label">
+            <input type="password" size="30" pPassword formControlName="password" id="password" autocomplete="off" >
+            <label for="float-input">Password</label>
+        </span>
+        <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
+      </div>
+      <br>
+      <br>
+        <!-- <button pButton type="button" class="ui-button-rounded ui-button-success" [disabled]="loginForm.invalid">Login</button> -->
+        <button class="btn btn-success" [disabled]="loginForm.invalid">Enter</button>
+      <div *ngIf="invalidLogin" class="error">
+        <div>Invalid credentials.</div>
+      </div>
+    </form>
+  </div>
+</div>
